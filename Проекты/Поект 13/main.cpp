@@ -11,25 +11,13 @@
 
 using namespace std;
 
-class Test
-{
-public:
-    Test()
-    {
-        cout << "Construct" << endl;
-    }
-    ~Test()
-    {
-        cout << "Destruct" << endl;
-    }
-};
-
 class Reader
 {
     vector <int> m_v;
 public:
     Reader() { }
     void read(const char* name);
+    void sort();
     void print();
 };
 
@@ -39,6 +27,11 @@ void Reader::print()
     {
         cout << m_v[i] << endl;
     }
+}
+
+void Reader::sort()
+{
+    sort(m_v.begin(), m_v.end());
 }
 
 void Reader::read(const char* name)
@@ -54,23 +47,16 @@ void Reader::read(const char* name)
     }
 }
 
-
-int _tmain(int argc, _TCHAR* argv[])
-{
-    string s;
-    s = "test";
-    cout << s << endl;
-    getchar();
-
+void mainFunc() {
     ofstream of;
-    of.open("myfile.txt");
+    of.open("/Users/karimmuzafarov/Desktop/ООП/Проекты/Поект 13/myfile.txt");
 
     for (int i = 0; i < 10; i++) {
         of << i << endl;
     }
 
     fstream ifile;
-    ifile.open("myfile.txt");
+    ifile.open("/Users/karimmuzafarov/Desktop/ООП/Проекты/Поект 13/myfile.txt");
     string s0, s1;
     for (;;) {
         ifile >> s0;
@@ -86,18 +72,20 @@ int _tmain(int argc, _TCHAR* argv[])
         if (ifile.eof()) break;
         v.push_back(a);
     }
-
-    //sort(v.begin(), v.end());
+    
     sort(v.rbegin(), v.rend());
     
 
-    vector <Test*>v2(10);
-    for (int i = 0; i < v.size(); i++) {
-        v2[i] = new Test();
-    }
-    for (int i = 0; i < v.size(); i++) {
-        delete v2[i]; v2[i] = 0;
-    }
+}
 
+
+int _tmain(int argc, _TCHAR* argv[])
+{
+    Reader r;
+    r.read("/Users/karimmuzafarov/Desktop/ООП/Проекты/Поект 13/myfile.txt");
+    r.sort();
+    r.print();
+    getchar();
+    mainFunc();
     return 0;
 }

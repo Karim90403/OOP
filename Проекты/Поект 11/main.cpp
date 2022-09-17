@@ -54,6 +54,23 @@ void Reader::read(const char* name)
     }
 }
 
+void reader() {
+    ifstream ifile;
+    ifile.open("/Users/karimmuzafarov/Desktop/ООП/Проекты/Поект 11/myfile.txt");
+    int a;
+    set <int> st;
+    for (; ;) {
+        ifile >> a;
+        if (ifile.eof())break;
+        st.insert(a);
+    }
+    set <int>::iterator it = st.begin();
+    for (; it != st.end(); ++it)
+    {
+        cout << *it << endl;
+    }
+}
+
 
 int _tmain(int argc, _TCHAR* argv[])
 {
@@ -63,20 +80,22 @@ int _tmain(int argc, _TCHAR* argv[])
     getchar();
 
     ofstream of;
-    of.open("myfile.txt");
+    of.open("/Users/karimmuzafarov/Desktop/ООП/Проекты/Поект 11/myfile.txt");
 
     for (int i = 0; i < 10; i++) {
         of << i << endl;
     }
 
     fstream ifile;
-    ifile.open("myfile.txt");
+    ifile.open("/Users/karimmuzafarov/Desktop/ООП/Проекты/Поект 11/myfile.txt");
     string s0, s1;
     for (;;) {
         ifile >> s0;
         if (ifile.eof()) break;
         s1 += s0 + "\n";
     }
+    
+    reader();
     cout << s1;
 
     int a;

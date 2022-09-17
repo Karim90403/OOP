@@ -54,23 +54,40 @@ void Reader::read(const char* name)
     }
 }
 
+void reader() {
+    ifstream ifile;
+    ifile.open("/Users/karimmuzafarov/Desktop/ООП/Проекты/Поект 12/myfile.txt");
+    int a;
+    set <int> st;
+    for (; ;) {
+        ifile >> a;
+        if (ifile.eof())break;
+        st.insert(a);
+    }
+    set <int>::iterator it = st.begin();
+    for (; it != st.end(); ++it)
+    {
+        cout << *it << endl;
+    }
+}
 
-int _tmain(int argc, _TCHAR* argv[])
-{
+void text() {
     string s;
     s = "test";
     cout << s << endl;
     getchar();
+}
 
+void mainFunc() {
     ofstream of;
-    of.open("myfile.txt");
+    of.open("/Users/karimmuzafarov/Desktop/ООП/Проекты/Поект 12/myfile.txt");
 
     for (int i = 0; i < 10; i++) {
         of << i << endl;
     }
 
     fstream ifile;
-    ifile.open("myfile.txt");
+    ifile.open("/Users/karimmuzafarov/Desktop/ООП/Проекты/Поект 12/myfile.txt");
     string s0, s1;
     for (;;) {
         ifile >> s0;
@@ -86,11 +103,9 @@ int _tmain(int argc, _TCHAR* argv[])
         if (ifile.eof()) break;
         v.push_back(a);
     }
-
-    //sort(v.begin(), v.end());
+    
     sort(v.rbegin(), v.rend());
     
-
     vector <Test*>v2(10);
     for (int i = 0; i < v.size(); i++) {
         v2[i] = new Test();
@@ -98,6 +113,12 @@ int _tmain(int argc, _TCHAR* argv[])
     for (int i = 0; i < v.size(); i++) {
         delete v2[i]; v2[i] = 0;
     }
+}
 
+
+int _tmain(int argc, _TCHAR* argv[])
+{
+    mainFunc();
+    reader();
     return 0;
 }

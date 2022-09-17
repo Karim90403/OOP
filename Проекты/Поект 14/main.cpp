@@ -11,25 +11,13 @@
 
 using namespace std;
 
-class Test
-{
-public:
-    Test()
-    {
-        cout << "Construct" << endl;
-    }
-    ~Test()
-    {
-        cout << "Destruct" << endl;
-    }
-};
-
 class Reader
 {
     vector <int> m_v;
 public:
     Reader() { }
     void read(const char* name);
+    void sort();
     void print();
 };
 
@@ -39,6 +27,11 @@ void Reader::print()
     {
         cout << m_v[i] << endl;
     }
+}
+
+void Reader::sort()
+{
+    ::sort(m_v.begin(), m_v.end());
 }
 
 void Reader::read(const char* name)
@@ -56,7 +49,7 @@ void Reader::read(const char* name)
 
 void reader() {
     ifstream ifile;
-    ifile.open("myfile.txt");
+    ifile.open("/Users/karimmuzafarov/Desktop/ООП/Проекты/Поект 14/myfile.txt");
     int a;
     set <int> st;
     for (; ;) {
@@ -71,52 +64,20 @@ void reader() {
     }
 }
 
-
-int _tmain(int argc, _TCHAR* argv[])
-{
+void text() {
     string s;
     s = "test";
     cout << s << endl;
     getchar();
+}
 
-    ofstream of;
-    of.open("myfile.txt");
 
-    for (int i = 0; i < 10; i++) {
-        of << i << endl;
-    }
-
-    fstream ifile;
-    ifile.open("myfile.txt");
-    string s0, s1;
-    for (;;) {
-        ifile >> s0;
-        if (ifile.eof()) break;
-        s1 += s0 + "\n";
-    }
-    
-    reader();
-    cout << s1;
-
-    int a;
-    vector <int> v;
-    for (; ; ) {
-        ifile >> a;
-        if (ifile.eof()) break;
-        v.push_back(a);
-    }
-
-    //sort(v.begin(), v.end());
-    sort(v.rbegin(), v.rend());
-    
-
-    vector <Test*>v2(10);
-    for (int i = 0; i < v.size(); i++) {
-        v2[i] = new Test();
-    }
-    for (int i = 0; i < v.size(); i++) {
-        delete v2[i]; v2[i] = 0;
-    }
-
+int _tmain(int argc, _TCHAR* argv[])
+{
+    Reader r;
+    r.read("/Users/karimmuzafarov/Desktop/ООП/Проекты/Поект 14/myfile.txt");
+    r.sort();
+    r.print();
+    getchar();
     return 0;
 }
